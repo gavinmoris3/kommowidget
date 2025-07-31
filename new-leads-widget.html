@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Leads Per Advisor</title>
+</head>
+<body>
+  <h2>New Leads Per Advisor</h2>
+  <div id="output">Loading...</div>
+
+  <script>
+    fetch('https://your-backend-url.com/new-leads')
+      .then(res => res.json())
+      .then(data => {
+        let html = '<ul>';
+        for (const advisor in data) {
+          html += `<li>Advisor ID ${advisor}: ${data[advisor]} new leads</li>`;
+        }
+        html += '</ul>';
+        document.getElementById('output').innerHTML = html;
+      })
+      .catch(() => {
+        document.getElementById('output').textContent = 'Failed to load data';
+      });
+  </script>
+</body>
+</html>
